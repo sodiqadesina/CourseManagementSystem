@@ -1,0 +1,39 @@
+﻿@model List<Course>
+
+
+<h1>All my courses</h1><br />
+
+<p><a asp-controller="Course" asp-action="Create">Add a new course</a></p>
+
+<table class ="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Instructor</th>
+            <th>Start date</th>
+            <th>Room #</th>
+            <th># of students</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Instructor</td>
+            <td>@item.StartDate.ToString("MM/dd/yyyy")</td>
+            <td>@item.RoomNumber</td>
+            <td>@item.Students.Count</td>
+            <td>
+                <a asp-controller="Course" asp-action="Manage" asp-route-id="@item.CourseId">Manage</a> |
+                <a asp-controller="Course" asp-action="Edit" asp-route-id="@item.CourseId">Edit</a>
+            </td>
+
+        </tr>
+    }
+
+
+
+</table>

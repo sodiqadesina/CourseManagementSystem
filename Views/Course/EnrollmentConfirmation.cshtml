@@ -1,0 +1,23 @@
+﻿@model CourseManagementSystem.Models.EnrollmentConfirmationViewModel
+
+<h1>Enrollment Confirmation</h1>
+<h3>You have been invited to enroll in the "@Model.CourseName" course !</h3>
+<p> Hey @Model.StudentName, you have been invited to entroll in the "@Model.CourseName" <br /> in room @Model.RoomNumber starting on 
+    @Model.StartDate with instructor: @Model.InstructorName - we would be thriled to have you join us but ask that you confirm your enrollment</p>
+
+<form action="@Url.Action("RecordResponse", "Course")" method="post">
+   
+    @Html.HiddenFor(model => model.StudentId)
+
+    <div class="d-flex flex-row justify-content-evenly">
+        <p>Do you want to enroll in the course?</p>
+        <label>
+            <input type="radio" name="enrollmentDecision" value="true" required> Yes
+        </label>
+        <label>
+            <input type="radio" name="enrollmentDecision" value="false" required> No
+        </label>
+
+        <button type="submit" class="btn btn-primary">Submit response</button>
+    </div>
+</form>

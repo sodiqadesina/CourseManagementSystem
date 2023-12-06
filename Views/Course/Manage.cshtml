@@ -1,0 +1,63 @@
+﻿@model Course
+
+<div class="container">
+    <h2>Manage your course</h2>
+    <div class="d-flex flex-row justify-content-between custom-width">
+        <p><a asp-controller="Course" asp-action="index" >All Courses</a></p> |
+        <p><a asp-controller="Course" asp-action="Edit" asp-route-id="@Model.CourseId">Edit This Course</a></p> |
+        <p><a asp-controller="Course" asp-action="Create">Add new course</a></p>
+    </div>
+    <h3>Course summary:</h3>
+    <p>The course "@Model.Name" is in room @Model.RoomNumber starting on @Model.StartDate.ToShortDateString() and the instructor is "@Model.Instructor".</p>
+
+    <div>
+        Invites not sent: @Model.Students.Count(s => s.Status == StudentStatus.ConfirmationMessageNotSent)
+        Sent count: @Model.Students.Count(s => s.Status == StudentStatus.ConfirmationMessageSent)
+        Confirmed count: @Model.Students.Count(s => s.Status == StudentStatus.EnrollmentConfirmed)
+        Declined count: @Model.Students.Count(s => s.Status == StudentStatus.EnrollmentDeclined)
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Enrollment status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model.Students)
+            {
+                <tr>
+                    <td>@student.Name</td>
+                    <td>@student.Email</td>
+                    <td>@student.Status.ToString()</td>
+                   
+                </tr>
+            }
+        </tbody>
+    </table>
+
+   
+        <form asp-action="CreateStudent" method="post" class="d-flex flex-row justify-content-center cust-width">
+            <div style="flex-grow: 1;">
+                <label for="studentName" >Name</label>
+                <input type="text" id="studentName" name="Name" required>
+            </div>
+            <div style="flex-grow: 1;">
+                <label for="studentEmail" >Email</label>
+                <input type="email" id="studentEmail" name="Email"  required>
+            </div>
+            <input type="hidden" name="CourseId" value="@Model.CourseId">
+            <button type="submit" class="btn btn-primary mb-2">Create student</button>
+        </form>
+    
+        <h2>Actions:</h2>
+    <form asp-action="SendEmail" asp-controller="Course" method="post">
+        <input type="hidden" name="courseId" value="@Model.CourseId" />
+        <button type="submit" class="btn btn-primary">Send Confirmation Messages</button>
+    </form>
+
+
+
+</div>
