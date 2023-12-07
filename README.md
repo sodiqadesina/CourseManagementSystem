@@ -1,10 +1,6 @@
 # CourseManagementSystem
-Course Management System 
-        Overview: Developed a web application aimed at facilitating course and student management for educational organizations. The application includes features for course creation, student enrollment, and tracking enrollment confirmations.
-
-        
-Key Features:
-            Course and Student Management: Enabled users to create and edit course details, add students to courses, and manage their enrollment statuses.
+Overview: Developed a web application aimed at facilitating course and student management for educational organizations. The application includes features for course creation, student enrollment, and tracking enrollment confirmations.     
+Key Features:  Course and Student Management: Enabled users to create and edit course details, add students to courses, and manage their enrollment statuses.
             Email Communication: Integrated functionality to send out email confirmations for student enrollments, with response tracking capabilities.
             Response Tracking: Developed a system to track students’ responses to enrollment confirmations, categorizing them as confirmed, declined, or pending.
             Data Storage: Implemented a database to store all relevant details about courses, students, and their response statuses.
